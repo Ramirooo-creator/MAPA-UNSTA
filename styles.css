@@ -1,0 +1,158 @@
+/* Paleta de Colores Final */
+:root {
+    /* Institucional/Autoridad */
+    --azul-unsta: #003366;
+    /* Académicas Clave */
+    --verde-aulas: #54A054;         /* AULAS/ANFITEATRO */
+    --coral-humanistica: #FF7F50;   /* HUMANÍSTICA */
+    --amarillo-ciu: #FFC300;        /* CIU */
+    /* Servicios y Administración */
+    --turquesa-admin: #008080;      /* ADMIN/LEGAL/COMPRAS/TESORERÍA */
+    --magenta-ocio: #C74B95;        /* BAR/PASTORAL/ENTRADA */
+    --verde-patio: #708238;         /* PATIO CENTRAL */
+    --gris-negro-seguridad: #333333; /* CONTROL DE INGRESO */
+    /* Nueva Clase */
+    --purpura-basilica: #800080;    /* BASÍLICA */
+}
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+header {
+    max-width: 1400px;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+/* CONTENEDOR PRINCIPAL: MAPA Y LEYENDA LADO A LADO */
+#main-content-container {
+    display: flex;
+    justify-content: center;
+    max-width: 1400px; /* Ajuste según la necesidad de su pantalla */
+    margin: 0 auto;
+    gap: 30px;
+}
+
+#map-container {
+    position: relative;
+    flex: 2; /* Ocupa 2/3 del espacio */
+    min-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* --- HOTSPOT STYLE --- */
+.hotspot {
+    position: absolute;
+    width: 30px; 
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    color: white; 
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s, background-color 0.2s;
+    font-size: 14px;
+}
+
+.hotspot:hover {
+    transform: scale(1.3);
+    z-index: 5;
+}
+
+/* COLORES DE CLASES */
+.autoridad { background-color: var(--azul-unsta); }
+.aulas { background-color: var(--verde-aulas); }
+.humanistica { background-color: var(--coral-humanistica); }
+.ciu { background-color: var(--amarillo-ciu); }
+.admin { background-color: var(--turquesa-admin); }
+.seguridad { background-color: var(--gris-negro-seguridad); }
+.ocio { background-color: var(--magenta-ocio); }
+.patio { background-color: var(--verde-patio); }
+.basilica { background-color: var(--purpura-basilica); } 
+/* ASCENSORES y ESCALERAS eliminados del listado actual, pero se mantienen si se reintroducen */
+
+
+/* --- ESTILO DE LA LEYENDA --- */
+
+#leyenda-container {
+    flex: 1; /* Ocupa 1/3 del espacio */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#leyenda-listado {
+    display: flex;
+    flex-direction: column; /* Lista vertical */
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.95em;
+}
+
+.leyenda-item-hotspot {
+    width: 20px; 
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    color: white; 
+    font-weight: bold;
+    margin-right: 10px;
+    flex-shrink: 0; /* Evita que el círculo se deforme */
+}
+
+/* --- ESTILO DEL MODAL --- (Se mantiene igual) */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 550px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-button:hover {
+    color: #000;
+}
