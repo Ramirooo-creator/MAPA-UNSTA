@@ -13,6 +13,8 @@
     --gris-negro-seguridad: #333333; /* CONTROL DE INGRESO */
     /* Nueva Clase */
     --purpura-basilica: #800080;    /* BASÍLICA */
+    /* Excepción */
+    --rojo-banco: #FF0000;
 }
 
 body {
@@ -28,24 +30,25 @@ header {
     text-align: center;
 }
 
-/* CONTENEDOR PRINCIPAL: MAPA Y LEYENDA LADO A LADO */
+/* CONTENEDOR PRINCIPAL: Usa FLEX para posicionar Mapa y Leyenda */
 #main-content-container {
     display: flex;
     justify-content: center;
-    max-width: 1400px; /* Ajuste según la necesidad de su pantalla */
+    max-width: 1400px; 
     margin: 0 auto;
     gap: 30px;
 }
 
+/* --- MAPA --- */
 #map-container {
     position: relative;
-    flex: 2; /* Ocupa 2/3 del espacio */
-    min-width: 600px;
+    flex: 2; /* Ocupa 2/3 del espacio en desktop */
+    min-width: 600px; /* Mínimo para evitar que se comprima demasiado en desktop */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #map-image {
-    width: 100%;
+    width: 100%; /* CLAVE: Asegura que la imagen sea totalmente flexible */
     height: auto;
     display: block;
     border-radius: 8px;
@@ -72,7 +75,7 @@ header {
     z-index: 5;
 }
 
-/* COLORES DE CLASES */
+/* COLORES DE CLASES (Basados en el objeto :root) */
 .autoridad { background-color: var(--azul-unsta); }
 .aulas { background-color: var(--verde-aulas); }
 .humanistica { background-color: var(--coral-humanistica); }
@@ -82,13 +85,12 @@ header {
 .ocio { background-color: var(--magenta-ocio); }
 .patio { background-color: var(--verde-patio); }
 .basilica { background-color: var(--purpura-basilica); } 
-/* ASCENSORES y ESCALERAS eliminados del listado actual, pero se mantienen si se reintroducen */
 
 
 /* --- ESTILO DE LA LEYENDA --- */
 
 #leyenda-container {
-    flex: 1; /* Ocupa 1/3 del espacio */
+    flex: 1; /* Ocupa 1/3 del espacio en desktop */
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -97,7 +99,7 @@ header {
 
 #leyenda-listado {
     display: flex;
-    flex-direction: column; /* Lista vertical */
+    flex-direction: column;
     gap: 8px;
     margin-top: 15px;
 }
@@ -119,7 +121,7 @@ header {
     color: white; 
     font-weight: bold;
     margin-right: 10px;
-    flex-shrink: 0; /* Evita que el círculo se deforme */
+    flex-shrink: 0;
 }
 
 /* --- ESTILO DEL MODAL --- (Se mantiene igual) */
@@ -155,4 +157,42 @@ header {
 }
 .close-button:hover {
     color: #000;
+}
+
+/* ------------------------------------------------------------------ */
+/* MEDIA QUERY: AJUSTES PARA DISPOSITIVOS MÓVILES           */
+/* ------------------------------------------------------------------ */
+
+/* Se aplica a pantallas con un ancho máximo de 900px (tablets y celulares) */
+@media (max-width: 900px) {
+    
+    #main-content-container {
+        /* Fuerza a que el mapa y la leyenda se apilen verticalmente */
+        flex-direction: column;
+        align-items: center; 
+        gap: 20px;
+    }
+
+    #map-container, #leyenda-container {
+        /* Ambos ocupan casi todo el ancho disponible */
+        width: 95%; 
+        max-width: 100%;
+        min-width: unset; /* Permite que el mapa se haga más pequeño */
+        
+        /* Aseguramos que la leyenda esté debajo del mapa */
+        order: 2; 
+    }
+    
+    #map-container {
+        /* Aseguramos que el mapa esté arriba de la leyenda en mobile */
+        order: 1; 
+    }
+
+    /* Ajuste el tamaño del Hotspot si es necesario para el tacto en móvil */
+    .hotspot {
+        width: 35px; 
+        height: 35px;
+        line-height: 35px;
+        font-size: 16px; 
+    }
 }
